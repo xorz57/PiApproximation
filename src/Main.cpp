@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+
 #include <iostream>
 #include <random>
 
@@ -9,7 +10,7 @@ const unsigned long TOTAL_ITERATIONS = 1'000'000UL;
 // Random number generator class
 class Random {
 public:
-    static Random& GetInstance() {
+    static Random &GetInstance() {
         static Random instance;
         return instance;
     }
@@ -60,7 +61,7 @@ int main() {
 
             // Create a vertex for the point
             sf::Vertex vertex;
-            vertex.position = { x * WINDOW_SIZE, y * WINDOW_SIZE };
+            vertex.position = {x * WINDOW_SIZE, y * WINDOW_SIZE};
 
             // Calculate the squared distance from the origin
             float distanceSquared = x * x + y * y;
@@ -69,8 +70,7 @@ int main() {
             if (distanceSquared <= 1.0f) {
                 vertex.color = sf::Color::Red;
                 pointsInsideCircleCount++;
-            }
-            else {
+            } else {
                 vertex.color = sf::Color::Blue;
             }
 
