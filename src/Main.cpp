@@ -31,11 +31,6 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Pi Approximation", sf::Style::Close, sf::ContextSettings(0U, 0U, 8U));
     window.setFramerateLimit(60U);
 
-    // Set the window icon if available
-    if (sf::Image favicon; favicon.loadFromFile("assets/favicon.png")) {
-        window.setIcon(favicon.getSize().x, favicon.getSize().y, favicon.getPixelsPtr());
-    }
-
     // Initialize counts for points inside the circle and total points
     unsigned long pointsInsideCircleCount = 0UL;
     unsigned long totalPointsCount = 0UL;
