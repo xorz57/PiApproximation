@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 
+#include "imgui-SFML.h"
+#include "imgui.h"
+
 #include <iostream>
 #include <random>
 
@@ -31,6 +34,8 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Pi Approximation", sf::Style::Close, sf::ContextSettings(0U, 0U, 8U));
     window.setFramerateLimit(60U);
 
+    ImGui::SFML::Init(window);
+
     // Initialize counts for points inside the circle and total points
     unsigned long pointsInsideCircleCount = 0UL;
     unsigned long totalPointsCount = 0UL;
@@ -38,15 +43,20 @@ int main() {
     // Create a vertex array for efficient point rendering
     sf::VertexArray points(sf::Points);
 
+    sf::Clock deltaClock;
+
     // Main loop
-    while (window.isOpen() && totalPointsCount < TOTAL_ITERATIONS) {
-        sf::Event event;
+    while (window.isOpen()) {
+        sf::Event event{};
         while (window.pollEvent(event)) {
+            ImGui::SFML::ProcessEvent(window, event);
+
             // Handle window close event
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
+        ImGui::SFML::Update(window, deltaClock.restart());
 
         // Generate and render points
         for (unsigned long iteration = 0UL; iteration < 1'000UL && totalPointsCount < TOTAL_ITERATIONS; iteration++) {
@@ -77,14 +87,20 @@ int main() {
         // Clear the window and draw the points
         window.clear(sf::Color::White);
         window.draw(points);
+
+        // Calculate the approximation of pi
+        float pi = 4.0f * static_cast<float>(pointsInsideCircleCount) / static_cast<float>(totalPointsCount);
+
+        ImGui::Begin("Result");
+        ImGui::Text("%.15f", pi);
+        ImGui::End();
+
+        ImGui::SFML::Render(window);
+
         window.display();
     }
 
-    // Calculate the approximation of pi
-    float pi = 4.0f * static_cast<float>(pointsInsideCircleCount) / static_cast<float>(totalPointsCount);
-
-    // Print the result
-    std::printf("%.15f\n", pi);
+    ImGui::SFML::Shutdown();
 
     return 0;
 }

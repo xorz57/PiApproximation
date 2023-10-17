@@ -2,6 +2,7 @@
   "name": "pi-approximation",
   "version-string": "0.1.0",
   "dependencies": [
-    "sfml"
+    "sfml",
+    "imgui-sfml"
   ]
 }

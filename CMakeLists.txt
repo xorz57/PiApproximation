@@ -4,6 +4,8 @@ project(PiApproximation)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(SFML COMPONENTS system window graphics REQUIRED)
+find_package(ImGui-SFML REQUIRED)
 
 add_executable(${PROJECT_NAME} src/Main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics)
+target_link_libraries(${PROJECT_NAME} PUBLIC ImGui-SFML::ImGui-SFML)
