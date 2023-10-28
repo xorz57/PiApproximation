@@ -9,3 +9,6 @@
 # Microsoft Visual Studio
 /.vs/
 /out/
+
+# clangd
+/.cache/
