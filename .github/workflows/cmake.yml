@@ -5,18 +5,18 @@ on:
       - main
   pull_request:
     types: [ opened, synchronize, reopened ]
-env:
-  BUILD_TYPE: Release
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BUILD_TYPE: Release
     steps:
       - uses: actions/checkout@v3
       - name: Install SFML Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libudev-dev libx11-dev libxrandr-dev libxcursor-dev libgl-dev
-      - name: Cache vcpkg dependencies
+      - name: Cache vcpkg Dependencies
         uses: actions/cache@v3
         with:
           path: |
