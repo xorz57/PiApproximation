@@ -7,7 +7,7 @@ Pi Approximation written in C++17
 - [SFML](https://github.com/SFML/SFML)
 - [ImGui-SFML](https://github.com/SFML/imgui-sfml)
 
-## How to Build using [CMake](https://cmake.org/)
+## How to Build using CMake
 
 ```bash
 cmake -B build
