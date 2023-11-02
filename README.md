@@ -21,8 +21,6 @@
     </a>
 </div>
 
-Pi Approximation written in C++17
-
 ## Dependencies
 
 - [SFML](https://github.com/SFML/SFML)
