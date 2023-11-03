@@ -50,7 +50,9 @@ int main() {
         }
         ImGui::SFML::Update(window, deltaClock.restart());
 
-        for (unsigned long iteration = 0UL; iteration < 1'000UL && totalPointsCount < TOTAL_ITERATIONS; iteration++) {
+        for (unsigned long iteration = 0UL; iteration < 1'000UL; iteration++) {
+            if (totalPointsCount >= TOTAL_ITERATIONS) break;
+
             float x = Random::GetInstance().Float(0.0f, 1.0f);
             float y = Random::GetInstance().Float(0.0f, 1.0f);
 
