@@ -13,5 +13,5 @@
 # clangd
 /.cache/
 
-# doxygen
+# Doxygen
 /docs/
