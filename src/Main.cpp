@@ -11,11 +11,6 @@ const unsigned long TOTAL_ITERATIONS = 1'000'000UL;
 
 class Random {
 public:
-    static Random &GetInstance() {
-        static Random instance;
-        return instance;
-    }
-
     float Float(float a, float b) {
         auto distribution = std::uniform_real_distribution<float>(a, b);
         auto engine = std::mt19937(mRandomDevice());
@@ -27,6 +22,8 @@ private:
 };
 
 int main() {
+    Random random;
+
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Pi Approximation", sf::Style::Close, sf::ContextSettings(0U, 0U, 8U));
     window.setFramerateLimit(60U);
 
@@ -53,8 +50,8 @@ int main() {
         for (unsigned long iteration = 0UL; iteration < 1'000UL; iteration++) {
             if (totalPointsCount >= TOTAL_ITERATIONS) break;
 
-            float x = Random::GetInstance().Float(0.0f, 1.0f);
-            float y = Random::GetInstance().Float(0.0f, 1.0f);
+            float x = random.Float(0.0f, 1.0f);
+            float y = random.Float(0.0f, 1.0f);
 
             sf::Vertex vertex;
             vertex.position = {x * WINDOW_SIZE, y * WINDOW_SIZE};
