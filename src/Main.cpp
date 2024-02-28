@@ -3,26 +3,15 @@
 #include "imgui-SFML.h"
 #include "imgui.h"
 
-#include <iostream>
 #include <random>
 
 const unsigned int WINDOW_SIZE = 600U;
 const unsigned long TOTAL_ITERATIONS = 1'000'000UL;
 
-class Random {
-public:
-    float Float(float a, float b) {
-        auto distribution = std::uniform_real_distribution<float>(a, b);
-        auto engine = std::mt19937(mRandomDevice());
-        return distribution(engine);
-    }
-
-private:
-    std::random_device mRandomDevice;
-};
-
 int main() {
-    Random random;
+    std::random_device mRandomDevice;
+    auto distribution = std::uniform_real_distribution<float>(0.0f, 1.0f);
+    auto engine = std::mt19937(mRandomDevice());
 
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Pi Approximation", sf::Style::Close, sf::ContextSettings(0U, 0U, 8U));
     window.setFramerateLimit(60U);
@@ -50,8 +39,8 @@ int main() {
         for (unsigned long iteration = 0UL; iteration < 1'000UL; iteration++) {
             if (totalPointsCount >= TOTAL_ITERATIONS) break;
 
-            float x = random.Float(0.0f, 1.0f);
-            float y = random.Float(0.0f, 1.0f);
+            float x = distribution(engine);
+            float y = distribution(engine);
 
             sf::Vertex vertex;
             vertex.position = {x * WINDOW_SIZE, y * WINDOW_SIZE};
