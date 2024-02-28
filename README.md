@@ -3,6 +3,8 @@
 [![Build](https://github.com/xorz57/PiApproximation/actions/workflows/Build.yml/badge.svg)](https://github.com/xorz57/PiApproximation/actions/workflows/Build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xorz57_PiApproximation&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=xorz57_PiApproximation)
 
+![image](https://github.com/xorz57/PiApproximation/assets/84932056/0c3ba88e-5474-498c-bb50-13c617f28553)
+
 ## Dependencies
 
 - [SFML](https://github.com/SFML/SFML)
